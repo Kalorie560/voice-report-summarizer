@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音声報告書作成システム</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>音声報告書作成システム</h1>
+        <p class="subtitle">現場の状況を音声で録音し、自動的に報告書を生成します</p>
+        
+        <div class="recording-section">
+            <button id="startButton" class="control-button start-button">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                録音開始
+            </button>
+            
+            <button id="stopButton" class="control-button stop-button" disabled>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="6" y="6" width="12" height="12"/>
+                </svg>
+                録音停止
+            </button>
+            
+            <div class="recording-status" id="recordingStatus">
+                <span class="status-dot"></span>
+                <span id="statusText">待機中</span>
+                <span id="recordingTime">00:00</span>
+            </div>
+        </div>
+        
+        <div class="waveform-container" id="waveformContainer">
+            <canvas id="waveform"></canvas>
+        </div>
+        
+        <div class="api-key-section">
+            <label for="apiKey">Gemini API Key:</label>
+            <input type="password" id="apiKey" placeholder="AIzaSy..." />
+            <small>APIキーは安全に保管され、ブラウザのローカルストレージに保存されます</small>
+        </div>
+        
+        <div class="report-section" id="reportSection" style="display: none;">
+            <h2>生成された報告書</h2>
+            <div class="report-content" id="reportContent">
+                <div class="loading">報告書を生成中...</div>
+            </div>
+            <button id="copyButton" class="action-button" style="display: none;">
+                クリップボードにコピー
+            </button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
