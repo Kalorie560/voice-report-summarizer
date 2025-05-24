@@ -213,7 +213,14 @@ async function generateReport(base64Audio, apiKey) {
 
 音声の内容を正確に把握し、専門的かつ簡潔な報告書として整理してください。`;
     
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+    // Geminiモデルの設定
+    // 利用可能なモデル:
+    // - gemini-1.5-flash: 高速で効率的
+    // - gemini-1.5-pro: より高度な推論能力
+    // - gemini-pro: 旧バージョン
+    const GEMINI_MODEL = 'gemini-1.5-flash';
+    
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${apiKey}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
